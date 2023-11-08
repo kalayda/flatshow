@@ -23,6 +23,6 @@ const upath = require('upath');
     const absFrom = upath.resolve(__dirname, `../${link.target}`);
     const absTo = upath.resolve(__dirname, `../${link.link}`);
     fs.symlink(absFrom, absTo, 'junction', (err) => {
-        if (!err) console.log(`failed ${err}`)
+        if (err) console.log(`failed ${err}`)
     });
 });
