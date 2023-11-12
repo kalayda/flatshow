@@ -3,7 +3,7 @@
 const fs = require('fs');
 const upath = require('upath');
 
-['dist', 'dist/css', 'dist/js'].forEach((dir) => {
+['dist', 'dist/css'].forEach((dir) => {
     console.log(`Creating ${dir}...`);
     fs.mkdir(dir, {recursive: true}, (err) => {
         if (err) {
@@ -17,6 +17,10 @@ const upath = require('upath');
     {
         target: 'src/assets',
         link: 'dist/assets'
+    },
+    {
+        target: 'src/js',
+        link: 'dist/js'
     }
 ].forEach((link) => {
     console.log(`Linking ${link.link} to ${link.target}...`);

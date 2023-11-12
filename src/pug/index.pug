@@ -9,12 +9,16 @@ html(lang='en')
         meta(name='author', content='assets/browserconfig.xml')
         meta(name='msapplication-config', content='')
 
+        meta(http-equiv="Cache-Control", content="no-cache, no-store, must-revalidate")
+        meta(http-equiv="Pragma", content="no-cache")
+        meta(http-equiv="Expires", content="0")
+
         title Дизайн интерьеров
 
         // Favicon
         link(rel='icon', type='image/x-icon', href='assets/favicon/favicon.ico')
         link(rel='manifest', href='assets/site.webmanifest')
-        link(rel='apple-touch-icon', href='assets/apple-touch-icon.png')
+        link(rel='apple-touch-icon', href='assets/favicon/apple-touch-icon.png')
 
         // Bootstrap Icons
         link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css', rel='stylesheet')
@@ -57,46 +61,56 @@ html(lang='en')
                             | Оперативно переходите к заключению договоров и работе над проектами
                         a.btn.btn-primary.btn-xl(href='#features') Возможности сервиса
 
-        // Services
+        include _feature
         section#features.page-section
-            .container.px-4.px-lg-5
-                h2.text-center.mt-0 At Your Service
+            .container
+                h2.text-center.mt-0 Возможности сервиса
                 hr.divider
-                .row.gx-4.gx-lg-5
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-gem.fs-1.text-primary
-                            h3.h4.mb-2 Sturdy Themes
-                            p.text-muted.mb-0 Our themes are updated regularly to keep them bug free!
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-laptop.fs-1.text-primary
-                            h3.h4.mb-2 Up to Date
-                            p.text-muted.mb-0 All dependencies are kept current to keep things fresh.
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-globe.fs-1.text-primary
-                            h3.h4.mb-2 Ready to Publish
-                            p.text-muted.mb-0 You can use this design as is, or you can make changes!
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-heart.fs-1.text-primary
-                            h3.h4.mb-2 Made with Love
-                            p.text-muted.mb-0 Is it really open source if it's not made with love?
+                .row
+                    -
+                        const content = `Выбирайте только то, что интересно
+                        Укажите, какие параметры объекта вам важны - стиль, площадь, бюджет, сроки, ЖК.... - и получите список из подходящих именно вам заказов.
+                        Работайте со <strong>своими</strong> заказчиками.
+
+                        Готовый бриф в заказе
+                        Заказчик сразу может указать информацию о взрослых и детях, домашних животных, хобби и многом другом.
+                        Выбирайте заказы, где такой информации достаточно, чтобы быстро сделать предложение, или уточните какие-то моменты потом.
+
+                        Заказы от собственников
+                        Вы сможете увидеть и отобрать заказы только от тех, кто подтвердил приобретение жилья.
+                        Не отвлекайтесь на заказы, которые только в далёких планах.
+
+                        Референсные дизайны
+                        Заказчики могут сами отмечать те работы из портфолио дизайнеров, которые привлекли их внимание, со своими пояснениями.
+                        Сможете быстрее сделать ещё более точное и индивидуализированное предложение.
+
+                        Автоматический подбор из готовых работ
+                        Сайт подскажет, какие из работ в вашем портфолио (или портфолио других дизайнеров) наиболее соответствуют каждому заказу.
+                        Вероятно понадобится лишь немного доработать готовый проект и предложить его заказчику.
+
+                        Делитесь заказами с партнерами
+                        Если какой-то заказ не подходит именно вам, вы можете передать ссылку на него дружественным дизайнерам.
+                        Возможно они пропустили интересный вариант.
+
+                        Богатая статистика
+                        Вы сможете отслеживать наиболее распространенные планировки, площади, профили заказчиков и многое другое, учитывая даже тех потенциальных клиентов, которые ещё не сформировали заказ.
+                        Работайте на упреждение и подстраивайтесь под самые массовые запросы.
+
+                        Сделаем вас заметными
+                        Мы готовы совершенно бесплатно скопировать к нам портфолио работ с вашего сайта или с рекламных материалов.
+                        Но если не ходите ждать, всегда можете сделать это самостоятельно.
+                        `
+                    each val, index in content.split(/\n\n/)
+                        +feature(index, val)
 
         // Contact
         section#contact.page-section.bg-dark.text-white
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
-                    .col-lg-8.col-xl-6.text-center
-                        h2.mt-0 Let's Get In Touch!
-                        hr.divider
-                        p.text-muted.mb-5
-                            | Ready to start your next project with us? Send us a messages and we will get back to you as soon as possible!
+                    h2.mt-0 Let's Get In Touch!
+                    hr.divider
+                    p.text-muted.mb-5
+                        | Ready to start your next project with us? Send us a messages and we will get back to you as soon as possible!
                 .row.gx-4.gx-lg-5.justify-content-center.mb-5
                     .col-lg-6
 
@@ -112,75 +126,76 @@ html(lang='en')
                         form#contactForm(data-sb-form-api-token='API_TOKEN')
 
                             // Name input
-                            .form-floating.mb-3
-                                input#name.form-control(
-                                    type='text',
-                                    placeholder='Enter your name...',
-                                    data-sb-validations='required'
-                                )
-                                label(for='name') Full name
-                                .invalid-feedback(data-sb-feedback='name:required')
-                                    | A name is required.
+                    .col-lg-8.col-xl-6.text-center
+                        .form-floating.mb-3
+                            input#name.form-control(
+                                type='text',
+                                placeholder='Enter your name...',
+                                data-sb-validations='required'
+                            )
+                            label(for='name') Full name
+                            .invalid-feedback(data-sb-feedback='name:required')
+                                | A name is required.
 
-                            // Email address input
-                            .form-floating.mb-3
-                                input#email.form-control(
-                                    type='email',
-                                    placeholder='name@example.com',
-                                    data-sb-validations='required,email'
-                                )
-                                label(for='email') Email address
-                                .invalid-feedback(data-sb-feedback='email:required')
-                                    | An email is required.
-                                .invalid-feedback(data-sb-feedback='email:email')
-                                    | Email is not valid.
+                        // Email address input
+                        .form-floating.mb-3
+                            input#email.form-control(
+                                type='email',
+                                placeholder='name@example.com',
+                                data-sb-validations='required,email'
+                            )
+                            label(for='email') Email address
+                            .invalid-feedback(data-sb-feedback='email:required')
+                                | An email is required.
+                            .invalid-feedback(data-sb-feedback='email:email')
+                                | Email is not valid.
 
-                            // Phone number input
-                            .form-floating.mb-3
-                                input#phone.form-control(
-                                    type='tel',
-                                    placeholder='(123) 456-7890',
-                                    data-sb-validations='required'
-                                )
-                                label(for='phone') Phone number
-                                .invalid-feedback(data-sb-feedback='phone:required')
-                                    | A phone number is required.
+                        // Phone number input
+                        .form-floating.mb-3
+                            input#phone.form-control(
+                                type='tel',
+                                placeholder='(123) 456-7890',
+                                data-sb-validations='required'
+                            )
+                            label(for='phone') Phone number
+                            .invalid-feedback(data-sb-feedback='phone:required')
+                                | A phone number is required.
 
-                            // Message input
-                            .form-floating.mb-3
-                                textarea#message.form-control(
-                                    type='text',
-                                    placeholder='Enter your message here...',
-                                    style='height: 10rem;',
-                                    data-sb-validations='required'
-                                )
-                                label(for='message') Message
-                                .invalid-feedback(data-sb-feedback='message:required')
-                                    | A message is required.
+                        // Message input
+                        .form-floating.mb-3
+                            textarea#message.form-control(
+                                type='text',
+                                placeholder='Enter your message here...',
+                                style='height: 10rem;',
+                                data-sb-validations='required'
+                            )
+                            label(for='message') Message
+                            .invalid-feedback(data-sb-feedback='message:required')
+                                | A message is required.
 
-                            // Submit success message
-                            //
-                            // This is what your users will see when the form
-                            // has successfully submitted
+                        // Submit success message
+                        //
+                        // This is what your users will see when the form
+                        // has successfully submitted
 
-                            #submitSuccessMessage.d-none
-                                .text-center.mb-3
-                                    .fw-bolder Form submission successful!
-                                    | To activate this form, sign up at
-                                    br
-                                    a(href='https://startbootstrap.com/solution/contact-forms') https://startbootstrap.com/solution/contact-forms
+                        #submitSuccessMessage.d-none
+                            .text-center.mb-3
+                                .fw-bolder Form submission successful!
+                                | To activate this form, sign up at
+                                br
+                                a(href='https://startbootstrap.com/solution/contact-forms') https://startbootstrap.com/solution/contact-forms
 
-                            // Submit error message
-                            //
-                            // This is what your users will see when there is
-                            // an error submitting the form
+                        // Submit error message
+                        //
+                        // This is what your users will see when there is
+                        // an error submitting the form
 
-                            #submitErrorMessage.d-none
-                                .text-center.text-danger.mb-3 Error sending message!
+                        #submitErrorMessage.d-none
+                            .text-center.text-danger.mb-3 Error sending message!
 
-                            // Submit Button
-                            .d-grid
-                                button#submitButton.btn.btn-primary.btn-xl.disabled(type='submit') Submit
+                        // Submit Button
+                        .d-grid
+                            button#submitButton.btn.btn-primary.btn-xl.disabled(type='submit') Submit
 
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-4.text-center.mb-5.mb-lg-0
@@ -198,6 +213,7 @@ html(lang='en')
 
         // Core theme JS
         script(src='js/scripts.js')
+        //script(src='js/features.js')
 
         // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
         // * *                               SB Forms JS                               * *

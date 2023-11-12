@@ -1,0 +1,33 @@
+$accent-color: #fafae0
+
+#features
+  > div
+    max-width: min(100%, 1600px)
+    .row
+      padding: 0 10px
+      font-size: larger
+      $padding: 0.5rem
+
+      h4
+        padding: $padding
+        background-color: $accent-color
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        span
+          margin-left: 0.5rem
+          font-weight: normal
+
+      p
+        text-align: justify
+        padding: $padding
+
+.accent
+  filter: saturate(50%)
+
+  &:hover
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    border-radius: 5px
+    filter: saturate(100%)
+    transition: all 0.7s

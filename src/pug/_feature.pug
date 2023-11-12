@@ -1,0 +1,14 @@
+mixin feature(id, content)
+    -
+        const parts = content.split(/\n/)
+        const title = parts.shift()
+        console.log(parts)
+
+    div(id="item" + id).item.accent.col-xl-6.p-2
+        h4
+            | #{title}
+            span(type = "button").btn.btn-primary
+                | Интересно!
+        each p in parts
+            p
+                | #{p}
